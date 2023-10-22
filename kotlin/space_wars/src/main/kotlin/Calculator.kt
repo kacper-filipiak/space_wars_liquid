@@ -7,25 +7,27 @@ class CalculatorImpl : Calculator {
         if (boxes.isEmpty()) {
             return 0 // Early return to simplify code below
         }
-        var encounteredMax = 0
-        var sum = 0
         val globalMaxIndex = boxes.lastIndexOf(boxes.maxOrNull()) // since list is not empty it has maximum
-        boxes.subList(0, globalMaxIndex).forEach { box ->
-            if(box > encounteredMax) {
+        val sumFromLeft = boxes.subList(0, globalMaxIndex).countSpaceUnderLocalMaximumsFromLeft()
+        val sumFromRight = boxes.subList(globalMaxIndex, boxes.size).asReversed().countSpaceUnderLocalMaximumsFromLeft()
+        return sumFromLeft + sumFromRight
+    }
+
+    /**
+     * Calculates sum of differences between already encountered maximum value and current element
+     * @return calculated sum
+     */
+    private fun List<Int>.countSpaceUnderLocalMaximumsFromLeft(): Int {
+        var sum = 0;
+        var encounteredMax = 0
+        forEach { box ->
+            if (box > encounteredMax) {
                 encounteredMax = box
             } else {
                 sum += encounteredMax - box
             }
         }
-        encounteredMax = 0
-        boxes.subList(globalMaxIndex, boxes.size).asReversed().forEach { box ->
-            if(box > encounteredMax) {
-                encounteredMax = box
-            } else {
-                sum += encounteredMax - box
-            }
-        }
-        return sum
+        return sum;
     }
 
 }
