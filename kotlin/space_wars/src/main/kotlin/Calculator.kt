@@ -4,7 +4,7 @@ interface Calculator {
 
 class Calculator_Impl : Calculator {
     override fun space(boxes: List<Int>): Int {
-        TODO("Not yet implemented")
+        return 0;
     }
 
 }
