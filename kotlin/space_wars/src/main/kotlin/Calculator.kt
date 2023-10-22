@@ -4,8 +4,16 @@ interface Calculator {
 
 class Calculator_Impl : Calculator {
     override fun space(boxes: List<Int>): Int {
-        return if(boxes.isEmpty()) 0
-        else 1
+        var max = 0
+        var sum = 0
+        boxes.forEach {
+            if(it > max) {
+                max = it
+            } else {
+                sum += max - it
+            }
+        }
+        return sum
     }
 
 }

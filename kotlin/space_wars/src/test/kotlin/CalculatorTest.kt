@@ -16,10 +16,19 @@ class CalculatorTest {
     @Test
     fun `should return 1 when list (1, 0, 1) passed as an argument`(){
         //GIVEN
-        val input_list = listOf(1, 0, 1);
+        val input = listOf(1, 0, 1);
         //WHEN
-        val actual = SUT.space(input_list)
+        val actual = SUT.space(input)
         //THEN
         assertThat(actual).isEqualTo(1)
+    }
+    @Test
+    fun `should return 2 when list (1, 0, 0, 1) passed as an argument`(){
+        //GIVEN
+        val input = listOf(1, 0, 0, 1);
+        //WHEN
+        val actual = SUT.space(input)
+        //THEN
+        assertThat(actual).isEqualTo(2)
     }
 }
