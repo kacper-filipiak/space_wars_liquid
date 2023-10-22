@@ -2,13 +2,24 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
 class CalculatorTest {
+
+    val SUT = Calculator_Impl()
     @Test
     fun `should return 0 when empty list passed as an argument`(){
         //GIVEN
-        val SUT = Calculator_Impl()
+
         //WHEN
         val actual = SUT.space(emptyList())
         //THEN
         assertThat(actual).isEqualTo(0)
+    }
+    @Test
+    fun `should return 1 when list (1, 0, 1) passed as an argument`(){
+        //GIVEN
+        val input_list = listOf(1, 0, 1);
+        //WHEN
+        val actual = SUT.space(input_list)
+        //THEN
+        assertThat(actual).isEqualTo(1)
     }
 }

@@ -4,7 +4,8 @@ interface Calculator {
 
 class Calculator_Impl : Calculator {
     override fun space(boxes: List<Int>): Int {
-        return 0;
+        return if(boxes.isEmpty()) 0
+        else 1
     }
 
 }
