@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test
 
 class CalculatorTest {
 
-    val SUT = Calculator_Impl()
+    val SUT = CalculatorImpl()
     @Test
     fun `should return 0 when empty list passed as an argument`(){
         //GIVEN
@@ -39,5 +39,14 @@ class CalculatorTest {
         val actual = SUT.space(input)
         //THEN
         assertThat(actual).isEqualTo(2)
+    }
+    @Test
+    fun `should return 3 when list (2, 0, 4, 0, 1) passed as an argument`(){
+        //GIVEN
+        val input = listOf(2, 0, 4, 0, 1);
+        //WHEN
+        val actual = SUT.space(input)
+        //THEN
+        assertThat(actual).isEqualTo(3)
     }
 }

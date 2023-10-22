@@ -2,23 +2,27 @@ interface Calculator {
     fun space(boxes: List<Int>) : Int
 }
 
-class Calculator_Impl : Calculator {
+class CalculatorImpl : Calculator {
     override fun space(boxes: List<Int>): Int {
-        var max = 0
+        if (boxes.isEmpty()) {
+            return 0 // Early return to simplify code below
+        }
+        var encounteredMax = 0
         var sum = 0
-        val globalMaxIndex = boxes.lastIndexOf(boxes.maxOrNull()).takeUnless { it == -1 } ?: boxes.size;
-        boxes.subList(0, globalMaxIndex).forEach {
-            if(it > max) {
-                max = it
+        val globalMaxIndex = boxes.lastIndexOf(boxes.maxOrNull()) // since list is not empty it has maximum
+        boxes.subList(0, globalMaxIndex).forEach { box ->
+            if(box > encounteredMax) {
+                encounteredMax = box
             } else {
-                sum += max - it
+                sum += encounteredMax - box
             }
         }
-        boxes.subList(globalMaxIndex, boxes.size).reversed().forEach {
-            if(it > max) {
-                max = it
+        encounteredMax = 0
+        boxes.subList(globalMaxIndex, boxes.size).asReversed().forEach { box ->
+            if(box > encounteredMax) {
+                encounteredMax = box
             } else {
-                sum += max - it
+                sum += encounteredMax - box
             }
         }
         return sum
