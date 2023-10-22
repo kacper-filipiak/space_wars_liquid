@@ -31,4 +31,13 @@ class CalculatorTest {
         //THEN
         assertThat(actual).isEqualTo(2)
     }
+    @Test
+    fun `should return 2 when list (2, 0, 0, 1) passed as an argument`(){
+        //GIVEN
+        val input = listOf(2, 0, 0, 1);
+        //WHEN
+        val actual = SUT.space(input)
+        //THEN
+        assertThat(actual).isEqualTo(2)
+    }
 }
